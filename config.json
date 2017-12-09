@@ -1,0 +1,30 @@
+{
+	"services": {},
+	"config": {
+		"sql": {
+			"host": "124.0.0.1",
+			"database": "db_name",
+			"user": "user_name",
+			"pass": "some_pass"
+		},
+		"sql_d09": {
+			"host": "d1sqlag1.leankit.io",
+			"database": "db_name",
+			"user": "user_name",
+			"pass": "some_pass"
+		},
+		"sql_local": {
+			"host": "124.0.0.1.com",
+			"database": "db_name",
+			"user": "user_name",
+			"pass": "some_pass"
+		},
+		"auth": {
+			"validationKey": "some secret",
+			"decryptionKey": "some secret"
+		},
+		"proxy": {
+			"interface": "en0"
+		}
+	}
+}

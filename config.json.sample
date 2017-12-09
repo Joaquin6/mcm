@@ -1,0 +1,24 @@
+{
+    "services": {
+        "rabbitmq": {},
+        "redis": {},
+        "core-service": {},
+        "frontend": {},
+        "vod-service": {},
+        "core-service-pg": {}
+    },
+    "config": {
+        "sql": {
+            "host": "124.0.0.1",
+            "database": "db_name",
+            "user": "user_name",
+            "pass": "some_pass"
+        },
+        "azure": {
+            "notificationHubs": {
+                "name": "",
+                "connectionString": ""
+            }
+        }
+    }
+}

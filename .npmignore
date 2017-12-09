@@ -1,0 +1,8 @@
+/.nyc_output
+/.vagrant
+/coverage
+/spec
+/.credentials
+/config.json
+/npm-debug.log
+/Vagrantfile
