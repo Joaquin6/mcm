@@ -24,14 +24,13 @@
     "test:only": "mocha -R spec 'spec/**/*.spec.js'",
     "test:watch": "npm run test:only -- -w"
   },
-  "nyc": {
-    "exclude": [
-      "coverage",
-      "spec"
-    ],
-    "all": true
-  },
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "babel-runtime": "^6.26.0",
     "commander": "^2.12.2",
     "dockerode": "^2.5.3",
     "flat": "^4.0.0",
@@ -48,6 +47,8 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "eslint": "^4.13.0",
