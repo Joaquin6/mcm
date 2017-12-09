@@ -1,8 +1,8 @@
 require( "../setup.js" );
-var path = require( "path" );
+const path = require( "path" );
 
 describe( "Setup Behavior", () => {
-	var api, fs, cp, hostile, dockerSetup, os;
+	let api, fs, cp, hostile, dockerSetup, os;
 	before( () => {
 		os = {
 			networkInterfaces: sinon.stub()
@@ -30,17 +30,17 @@ describe( "Setup Behavior", () => {
 		api = proxyquire( "../src/setup", {
 			"fs-extra": fs,
 			child_process: cp, // eslint-disable-line
-			hostile: hostile,
+			hostile,
 			"./dockerSetup": dockerSetup,
-			os: os
+			os
 		} )( {
 			MCMFolder: "~/me/.MCM"
 		} );
 	} );
 
 	describe( "run", () => {
-		var setupDockerConfig, parseConfig, result;
-		before( ( done ) => {
+		let setupDockerConfig, parseConfig, result;
+		before( done => {
 			dockerSetup.getDockerCreds.resolves( "i'm encoded" );
 			setupDockerConfig = sinon.stub( api, "setupDockerConfig" ).resolves( { dockerConfig: "stuff" } );
 			parseConfig = sinon.stub( api, "parseConfig" ).returns( { config: "stuff" } );
@@ -132,7 +132,7 @@ describe( "Setup Behavior", () => {
 	describe( "parseConfig", () => {
 		describe( "when two configurations are given", () => {
 			it( "should merge and flatten them correctly", () => {
-				var userConfig = {
+				const userConfig = {
 					sql: {
 						database: "myDb",
 						host: "localhost"
@@ -142,7 +142,7 @@ describe( "Setup Behavior", () => {
 					}
 				};
 
-				var configDefaults = {
+				const configDefaults = {
 					sql: {
 						database: "defaultDb",
 						host: "defaultHost",
@@ -234,10 +234,10 @@ describe( "Setup Behavior", () => {
 
 	describe( "setupDockerConfig", () => {
 		describe( "with no overriding config", () => {
-			var result;
+			let result;
 			before( done => {
 				sinon.stub( api, "getHostIp" ).withArgs( "en0" ).returns( "192.168.0.1" );
-				var hosts = [
+				const hosts = [
 					[ "172.16.82.175", "127.0.0.1 localhost.kanban.com" ],
 					[ "127.0.0.1", "me " ],
 					[ "255.255.255.255", "hello" ],
@@ -251,7 +251,7 @@ describe( "Setup Behavior", () => {
 					[ "\t28.18.29.20", "something.com localhost" ]
 				];
 
-				var dockerDefaults = {
+				const dockerDefaults = {
 					HostConfig: {
 						ExtraHosts: [ "vagrant.local:192.168.33.1" ]
 					}
@@ -291,12 +291,12 @@ describe( "Setup Behavior", () => {
 			} );
 		} );
 		describe( "when overriding the docker ip", () => {
-			var result;
+			let result;
 			before( done => {
 				sinon.stub( api, "getHostIp" ).withArgs( "en0" ).returns( "192.168.0.1" );
-				var hosts = [ ];
+				const hosts = [ ];
 
-				var dockerDefaults = {
+				const dockerDefaults = {
 					HostConfig: {
 						ExtraHosts: []
 					}
@@ -327,12 +327,12 @@ describe( "Setup Behavior", () => {
 			} );
 		} );
 		describe( "when overriding the public interface", () => {
-			var result;
+			let result;
 			before( done => {
 				sinon.stub( api, "getHostIp" ).withArgs( "en5" ).returns( "192.168.0.125" );
-				var hosts = [ ];
+				const hosts = [ ];
 
-				var dockerDefaults = {
+				const dockerDefaults = {
 					HostConfig: {
 						ExtraHosts: []
 					}
@@ -363,12 +363,12 @@ describe( "Setup Behavior", () => {
 			} );
 		} );
 		describe( "when overriding the public ip", () => {
-			var result;
+			let result;
 			before( done => {
 				sinon.stub( api, "getHostIp" );
-				var hosts = [ ];
+				const hosts = [ ];
 
-				var dockerDefaults = {
+				const dockerDefaults = {
 					HostConfig: {
 						ExtraHosts: []
 					}
@@ -402,12 +402,12 @@ describe( "Setup Behavior", () => {
 			} );
 		} );
 		describe( "when overriding with the legacy proxy host value", () => {
-			var result;
+			let result;
 			before( done => {
 				sinon.stub( api, "getHostIp" );
-				var hosts = [ ];
+				const hosts = [ ];
 
-				var dockerDefaults = {
+				const dockerDefaults = {
 					HostConfig: {
 						ExtraHosts: []
 					}

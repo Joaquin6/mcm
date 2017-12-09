@@ -1,5 +1,5 @@
 require( "../setup.js" );
-var path = require( "path" );
+const path = require( "path" );
 
 describe( "index", () => {
 	let index,

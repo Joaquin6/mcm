@@ -1,7 +1,7 @@
 require( "../setup.js" );
 
 describe( "Service Loader Behavior", () => {
-	var fs, loader;
+	let fs, loader;
 	before( () => {
 		fs = {
 			readdirSync: sinon.stub(),
@@ -15,7 +15,7 @@ describe( "Service Loader Behavior", () => {
 
 	describe( "when local service directory does not exist", () => {
 		describe( "when reading the service JSON succeeds", () => {
-			var results;
+			let results;
 			before( () => {
 				fs.readdirSync.withArgs( "/local/services" ).throws();
 				fs.readdirSync.withArgs( "/main/services" ).returns( [ "service1.json", "service2.json" ] );
@@ -46,7 +46,7 @@ describe( "Service Loader Behavior", () => {
 			} );
 		} );
 		describe( "when reading the service JSON fails", () => {
-			var results, error, errorLog;
+			let results, error, errorLog;
 			before( () => {
 				error = new Error( "nope" );
 				errorLog = sinon.stub();
@@ -81,7 +81,7 @@ describe( "Service Loader Behavior", () => {
 	} );
 
 	describe( "when a local service directory does exist", () => {
-		var results;
+		let results;
 		before( () => {
 			fs.readdirSync.withArgs( "/local/services" ).returns( [ "service2.json", "service3.json" ] );
 			fs.readdirSync.withArgs( "/main/services" ).returns( [ "service1.json", "service2.json" ] );

@@ -1,22 +1,22 @@
 require( "../setup.js" );
-var PassThrough = require( "stream" ).PassThrough;
-var _ = require( "lodash" );
+const PassThrough = require( "stream" ).PassThrough;
+const _ = require( "lodash" );
 
 describe( "Docker API Interactions", function() {
-	var logger = {
+	const logger = {
 		info: sinon.stub(),
 		data: sinon.stub(),
-		reset: function() {
+		reset() {
 			this.info.reset();
 			this.data.reset();
 		}
 	};
 
-	var config = {
+	const config = {
 		auth: "base64string"
 	};
 
-	var api, docker, logUpdate, apiFactory;
+	let api, docker, logUpdate, apiFactory;
 
 	before( function() {
 		logUpdate = sinon.stub();
@@ -39,7 +39,7 @@ describe( "Docker API Interactions", function() {
 
 	describe( "pullImage", function() {
 		describe( "when an error happens", function() {
-			var err;
+			let err;
 			before( function() {
 				err = new Error( "NO IMAGE HERE" );
 				docker.pull.callsArgWith( 2, err );
@@ -57,7 +57,7 @@ describe( "Docker API Interactions", function() {
 
 		describe( "when the image is pulled successfully", function() {
 			describe( "when there are lines to log", () => {
-				var stream;
+				let stream;
 				before( function( done ) {
 					stream = new PassThrough();
 
@@ -68,34 +68,27 @@ describe( "Docker API Interactions", function() {
 						} );
 
 					process.nextTick( function() {
-						const msgs = [
-							{
+						const msgs = [ {
 								status: 1,
 								progress: 2,
 								id: 123
-							},
-							{
+							}, {
 								status: 3,
 								progress: 4,
 								id: 456
-							},
-							{
+							}, {
 								status: "Doing good",
 								id: 789
 							},
-							" ",
-							{
+							" ", {
 								status: 3
-							},
-							{
+							}, {
 								status: "Already exists",
 								progress: 4,
 								id: 1
-							},
-							{
+							}, {
 								id: "latest"
-							},
-							{
+							}, {
 								id: 2,
 								progress: "Pull complete"
 							}
@@ -130,7 +123,7 @@ describe( "Docker API Interactions", function() {
 				} );
 			} );
 			describe( "when there are no lines to log", () => {
-				var stream;
+				let stream;
 				before( function( done ) {
 					stream = new PassThrough();
 
@@ -141,12 +134,10 @@ describe( "Docker API Interactions", function() {
 						} );
 
 					process.nextTick( function() {
-						const msgs = [
-							{
-								id: 2,
-								progress: "Pull complete"
-							}
-						];
+						const msgs = [ {
+							id: 2,
+							progress: "Pull complete"
+						} ];
 						msgs.forEach( m => {
 							stream.write( _.isObject( m ) ? JSON.stringify( m ) : m );
 						} );
@@ -171,7 +162,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when no auth config is provided", () => {
-			var instance, stream, localDocker;
+			let instance, stream, localDocker;
 			before( done => {
 				stream = new PassThrough();
 				localDocker = {
@@ -198,7 +189,7 @@ describe( "Docker API Interactions", function() {
 
 	describe( "getImage", () => {
 		describe( "when there is an error", () => {
-			var error;
+			let error;
 			before( () => {
 				error = new Error( "no image" );
 				docker.listImages.callsArgWith( 0, error );
@@ -228,7 +219,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the image is found", () => {
-			var image1, image2;
+			let image1, image2;
 			before( () => {
 				image1 = {
 					Id: "123",
@@ -255,7 +246,7 @@ describe( "Docker API Interactions", function() {
 
 	describe( "getAllContainers", function() {
 		describe( "when there is an error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "Can't list" );
 				docker.listContainers.callsArgWith( 1, error );
@@ -272,7 +263,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when no container is found", function() {
-			var result;
+			let result;
 			before( function() {
 				docker.listContainers.callsArgWith( 1, null, null );
 				result = api.getAllContainers( "/some/image" );
@@ -290,7 +281,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when a container is found", function() {
-			var container, container2, container3, result;
+			let container, container2, container3, result;
 			before( function() {
 				container = {
 					Id: "abc123",
@@ -318,7 +309,9 @@ describe( "Docker API Interactions", function() {
 			} );
 
 			it( "should call listContainers with the correct arguments", function() {
-				docker.listContainers.should.have.been.calledWith( { all: 1 } );
+				docker.listContainers.should.have.been.calledWith( {
+					all: 1
+				} );
 			} );
 
 			it( "should get the correct container", function() {
@@ -338,7 +331,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "stopContainer", function() {
-		var container;
+		let container;
 		before( function() {
 			container = {
 				stop: sinon.stub()
@@ -361,7 +354,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an unknown error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "uh oh" );
 				container.stop.callsArgWith( 0, error );
@@ -378,9 +371,9 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the container is already stopped", function() {
-			var result;
+			let result;
 			before( function() {
-				var error = new Error( "uh oh" );
+				const error = new Error( "uh oh" );
 				error.statusCode = 304;
 				container.stop.callsArgWith( 0, error );
 				result = api.stopContainer( container, "someContainer" );
@@ -402,9 +395,9 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the container doesn't exist", function() {
-			var result;
+			let result;
 			before( function() {
-				var error = new Error( "uh oh" );
+				const error = new Error( "uh oh" );
 				error.statusCode = 404;
 				container.stop.callsArgWith( 0, error );
 				result = api.stopContainer( container, "noWorky" );
@@ -427,7 +420,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "killContainer", function() {
-		var container;
+		let container;
 		before( function() {
 			container = {
 				kill: sinon.stub()
@@ -450,7 +443,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an unknown error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "uh oh" );
 				container.kill.callsArgWith( 0, error );
@@ -467,9 +460,9 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the container doesn't exist", function() {
-			var result;
+			let result;
 			before( function() {
-				var error = new Error( "uh oh" );
+				const error = new Error( "uh oh" );
 				error.statusCode = 404;
 				container.kill.callsArgWith( 0, error );
 				result = api.killContainer( container, "noWorky" );
@@ -492,7 +485,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "removeContainer", function() {
-		var container;
+		let container;
 		before( function() {
 			container = {
 				remove: sinon.stub()
@@ -515,7 +508,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an unknown error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "uh oh" );
 				container.remove.callsArgWith( 0, error );
@@ -532,9 +525,9 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the container doesn't exist", function() {
-			var result;
+			let result;
 			before( function() {
-				var error = new Error( "uh oh" );
+				const error = new Error( "uh oh" );
 				error.statusCode = 404;
 				container.remove.callsArgWith( 0, error );
 				result = api.removeContainer( container, "NOPE" );
@@ -558,7 +551,7 @@ describe( "Docker API Interactions", function() {
 
 	describe( "_destroyContainer", function() {
 		describe( "when there is no error", () => {
-			var stop, remove, result, container, kill;
+			let stop, remove, result, container, kill;
 			before( function() {
 				container = "someContainer";
 				stop = sinon.stub( api, "stopContainer" ).resolves( container );
@@ -585,7 +578,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an error removing container", () => {
-			var stop, remove, result, container, kill;
+			let stop, remove, result, container, kill;
 			before( function() {
 				container = "someContainer";
 				stop = sinon.stub( api, "stopContainer" ).resolves( container );
@@ -614,7 +607,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an error killing container", () => {
-			var stop, remove, result, container, kill;
+			let stop, remove, result, container, kill;
 			before( function() {
 				container = "someContainer";
 				stop = sinon.stub( api, "stopContainer" ).resolves( container );
@@ -646,7 +639,7 @@ describe( "Docker API Interactions", function() {
 
 	describe( "destroyContainer", () => {
 		describe( "when the destroy is successful the first time", () => {
-			var destroy;
+			let destroy;
 			before( () => {
 				destroy = sinon.stub( api, "_destroyContainer" ).resolves();
 			} );
@@ -662,9 +655,9 @@ describe( "Docker API Interactions", function() {
 
 		describe( "when the destroy is successful the third time", () => {
 			this.timeout( 2000 );
-			var destroy;
+			let destroy;
 			before( () => {
-				var error = new Error( "NOPE" );
+				const error = new Error( "NOPE" );
 				destroy = sinon.stub( api, "_destroyContainer" );
 				destroy.onFirstCall().rejects( error );
 				destroy.onSecondCall().rejects( error );
@@ -681,7 +674,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the destroy is not succesful", () => {
-			var destroy;
+			let destroy;
 			before( () => {
 				destroy = sinon.stub( api, "_destroyContainer" ).rejects( new Error( "NOPE" ) );
 			} );
@@ -701,7 +694,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "startContainer", function() {
-		var container;
+		let container;
 		before( function() {
 			container = {
 				start: sinon.stub()
@@ -724,7 +717,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an unknown error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "uh oh" );
 				container.start.callsArgWith( 0, error );
@@ -741,9 +734,9 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when the container is already running", function() {
-			var result;
+			let result;
 			before( function() {
-				var error = new Error( "uh oh" );
+				const error = new Error( "uh oh" );
 				error.statusCode = 304;
 				container.start.callsArgWith( 0, error );
 				result = api.startContainer( container, "alreadyStarted" );
@@ -766,7 +759,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "createContainer", function() {
-		var image, container, options;
+		let image, container, options;
 		before( function() {
 			image = "my/image";
 			container = "myContainerInstance";
@@ -776,7 +769,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is no error", function() {
-			var result;
+			let result;
 			before( function() {
 				docker.createContainer.callsArgWith( 1, null, container );
 				result = api.createContainer( image, options );
@@ -801,7 +794,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an unknown error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "uh oh" );
 				docker.createContainer.callsArgWith( 1, error );
@@ -819,7 +812,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "renameContainer", function() {
-		var container, instance;
+		let container, instance;
 		before( function() {
 			container = {
 				rename: sinon.stub()
@@ -828,7 +821,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is no error", function() {
-			var result;
+			let result;
 			before( function() {
 				container.rename.callsArgWith( 1, null, instance );
 				result = api.renameContainer( "cName", container );
@@ -851,7 +844,7 @@ describe( "Docker API Interactions", function() {
 		} );
 
 		describe( "when there is an unknown error", function() {
-			var error;
+			let error;
 			before( function() {
 				error = new Error( "uh oh" );
 				container.rename.callsArgWith( 1, error );
@@ -868,7 +861,7 @@ describe( "Docker API Interactions", function() {
 	} );
 
 	describe( "run", function() {
-		var createStub, startStub, renameStub, createResult, startResult, renameResult, finalResult;
+		let createStub, startStub, renameStub, createResult, startResult, renameResult, finalResult;
 		before( function() {
 			createResult = "createResult";
 			createStub = sinon.stub( api, "createContainer" ).resolves( createResult );
@@ -879,12 +872,16 @@ describe( "Docker API Interactions", function() {
 			renameResult = "renameResult";
 			renameStub = sinon.stub( api, "renameContainer" ).resolves( renameResult );
 
-			finalResult = api.run( "myImage", "myName", { myOptions: true } );
+			finalResult = api.run( "myImage", "myName", {
+				myOptions: true
+			} );
 			return finalResult;
 		} );
 
 		it( "should call create", function() {
-			createStub.should.have.been.calledWith( "myImage", { myOptions: true } );
+			createStub.should.have.been.calledWith( "myImage", {
+				myOptions: true
+			} );
 		} );
 
 		it( "should call start", function() {

@@ -1,7 +1,7 @@
 require( "../../setup.js" );
 
 describe( "Service - HAProxy", () => {
-	var fs, service;
+	let fs, service;
 
 	before( () => {
 		fs = {
@@ -16,7 +16,7 @@ describe( "Service - HAProxy", () => {
 
 	describe( "postInit", () => {
 		it( "should store the kanban host configuration", () => {
-			var context = {};
+			const context = {};
 			service.postInit.call( context, {
 				configDefaultValues: {
 					KANBAN_HOST: "somekanban.com"
@@ -29,10 +29,10 @@ describe( "Service - HAProxy", () => {
 	describe( "preStart", () => {
 		describe( "when the proxy path is a string", () => {
 			it( "should construct the haproxy statements correctly", () => {
-				var context = {
+				const context = {
 					proxyConfig: {}
 				};
-				var services = [
+				const services = [
 					{ name: "other" },
 					{
 						name: "api",
@@ -58,10 +58,10 @@ describe( "Service - HAProxy", () => {
 		} );
 		describe( "when the proxy path is an array", () => {
 			it( "should construct the haproxy statements correctly", () => {
-				var context = {
+				const context = {
 					proxyConfig: {}
 				};
-				var services = [
+				const services = [
 					{ name: "other" },
 					{
 						name: "api",
@@ -91,10 +91,10 @@ describe( "Service - HAProxy", () => {
 		describe( "when the proxy path is an object", () => {
 			describe( "when the acl is an array", () => {
 				it( "should construct the haproxy statements correctly", () => {
-					var context = {
+					const context = {
 						proxyConfig: {}
 					};
-					var services = [
+					const services = [
 						{ name: "other" },
 						{
 							name: "api",
@@ -132,10 +132,10 @@ describe( "Service - HAProxy", () => {
 			} );
 			describe( "when the acl is a string", () => {
 				it( "should construct the haproxy statements correctly", () => {
-					var context = {
+					const context = {
 						proxyConfig: {}
 					};
-					var services = [
+					const services = [
 						{ name: "other" },
 						{
 							name: "api",
@@ -177,7 +177,7 @@ describe( "Service - HAProxy", () => {
 	describe( "postFileSystem", () => {
 		before( () => {
 			fs.readFileSync.returns( "<%= BACKEND_PATHS %>\n\n<%= BACKEND_DEFINITIONS %>\n\n<%= KANBAN_HOST %>" );
-			var context = {
+			const context = {
 				proxyEntries: {
 					backendPaths: [
 						"use_backend bk_api if { path_beg -i /my/api }",
@@ -196,7 +196,7 @@ describe( "Service - HAProxy", () => {
 		} );
 
 		it( "should write the configuration file correctly", () => {
-			var cfg = "use_backend bk_api if { path_beg -i /my/api }\n\tuse_backend bk_api if { path_beg -i /other/path }\n\nbackend bk_api\n\tserver api public.host.local:8080\n\nbackend bk_kanban\n\tserver api public.host.local:9000\n\nkanbanana.com";
+			const cfg = "use_backend bk_api if { path_beg -i /my/api }\n\tuse_backend bk_api if { path_beg -i /other/path }\n\nbackend bk_api\n\tserver api public.host.local:8080\n\nbackend bk_kanban\n\tserver api public.host.local:9000\n\nkanbanana.com";
 			fs.writeFileSync.should.have.been.calledWith( "~/.MCM/containers/haproxy.cfg", cfg );
 		} );
 

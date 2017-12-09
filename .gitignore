@@ -112,6 +112,8 @@ _NCrunch_*
 *.mm.*
 AutoTest.Net/
 
+.nyc_output
+
 # Web workbench (sass)
 .sass-cache/
 

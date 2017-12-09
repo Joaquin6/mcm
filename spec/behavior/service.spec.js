@@ -1,15 +1,15 @@
 require( "../setup.js" );
-var path = require( "path" );
-var _ = require( "lodash" );
+const path = require( "path" );
+const _ = require( "lodash" );
 
 describe( "Service Behavior", function() {
-	var serviceFactory, service, logger, docker, configuration, serviceDef, dockerDefaults, configDefaultValues, fs, serviceHooks, requireAll;
+	let serviceFactory, service, logger, docker, configuration, serviceDef, dockerDefaults, configDefaultValues, fs, serviceHooks, requireAll;
 	before( function() {
 		logger = {
 			info: sinon.stub(),
 			data: sinon.stub(),
 			error: sinon.stub(),
-			reset: function() {
+			reset() {
 				this.info.resetHistory();
 				this.data.resetHistory();
 				this.error.resetHistory();
@@ -128,11 +128,11 @@ describe( "Service Behavior", function() {
 
 		service = serviceFactory( {
 			name: "myService",
-			docker: docker,
-			configuration: configuration,
-			serviceDef: serviceDef,
-			dockerDefaults: dockerDefaults,
-			configDefaultValues: configDefaultValues,
+			docker,
+			configuration,
+			serviceDef,
+			dockerDefaults,
+			configDefaultValues,
 			MCMFolder: "~/.MCM",
 			hooks: serviceHooks
 		} );
@@ -226,11 +226,11 @@ describe( "Service Behavior", function() {
 		it( "should fire the postInit hooks", () => {
 			serviceHooks.postInit.should.have.been.calledWith( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM",
 				hooks: serviceHooks
 			} );
@@ -244,7 +244,7 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "minimal initialization", () => {
-		var instance;
+		let instance;
 		before( () => {
 			instance = serviceFactory( {
 				name: "minimalService",
@@ -262,7 +262,7 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "initialization with mixin", () => {
-		var instance;
+		let instance;
 		before( () => {
 			instance = serviceFactory( {
 				name: "serviceWithMixin",
@@ -277,15 +277,15 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "pull", () => {
-		var instance;
+		let instance;
 		before( () => {
 			instance = serviceFactory( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM"
 			} );
 
@@ -293,7 +293,7 @@ describe( "Service Behavior", function() {
 		} );
 
 		describe( "when the call is successful", () => {
-			var result;
+			let result;
 			before( () => {
 				docker.pullImage.resolves( "imageHere" );
 				result = instance.pull();
@@ -314,7 +314,7 @@ describe( "Service Behavior", function() {
 		} );
 
 		describe( "when there is an error", () => {
-			var result, error;
+			let result, error;
 			before( () => {
 				error = new Error( "No pulling allowed" );
 				docker.pullImage.rejects( error );
@@ -338,15 +338,15 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "run", () => {
-		var instance;
+		let instance;
 		before( () => {
 			instance = serviceFactory( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM"
 			} );
 
@@ -364,15 +364,15 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "getImage", () => {
-		var instance;
+		let instance;
 		before( () => {
 			instance = serviceFactory( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM"
 			} );
 
@@ -390,15 +390,15 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "cleanup", () => {
-		var instance;
+		let instance;
 		before( () => {
 			instance = serviceFactory( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM"
 			} );
 		} );
@@ -441,15 +441,15 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "start", () => {
-		var instance, cleanup, getImage, pull, run, setupFs;
+		let instance, cleanup, getImage, pull, run, setupFs;
 		before( () => {
 			instance = serviceFactory( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM",
 				hooks: serviceHooks
 			} );
@@ -543,15 +543,15 @@ describe( "Service Behavior", function() {
 	} );
 
 	describe( "stop", () => {
-		var cleanup;
+		let cleanup;
 		before( () => {
-			var instance = serviceFactory( {
+			const instance = serviceFactory( {
 				name: "myService",
-				docker: docker,
-				configuration: configuration,
-				serviceDef: serviceDef,
-				dockerDefaults: dockerDefaults,
-				configDefaultValues: configDefaultValues,
+				docker,
+				configuration,
+				serviceDef,
+				dockerDefaults,
+				configDefaultValues,
 				MCMFolder: "~/.MCM"
 			} );
 
@@ -566,18 +566,18 @@ describe( "Service Behavior", function() {
 
 	describe( "_setupFilesystem", () => {
 		describe( "when no files or folders are specified", () => {
-			var instance;
+			let instance;
 			before( () => {
-				var localServiceDef = _.cloneDeep( serviceDef );
+				const localServiceDef = _.cloneDeep( serviceDef );
 				delete localServiceDef.folders;
 				delete localServiceDef.files;
 				instance = serviceFactory( {
 					name: "myService",
-					docker: docker,
-					configuration: configuration,
+					docker,
+					configuration,
 					serviceDef: localServiceDef,
-					dockerDefaults: dockerDefaults,
-					configDefaultValues: configDefaultValues,
+					dockerDefaults,
+					configDefaultValues,
 					MCMFolder: "~/.MCM",
 					hooks: serviceHooks
 				} );
@@ -602,15 +602,15 @@ describe( "Service Behavior", function() {
 			} );
 		} );
 		describe( "when files and folders are specified", () => {
-			var instance;
+			let instance;
 			before( () => {
 				instance = serviceFactory( {
 					name: "myService",
-					docker: docker,
-					configuration: configuration,
-					serviceDef: serviceDef,
-					dockerDefaults: dockerDefaults,
-					configDefaultValues: configDefaultValues,
+					docker,
+					configuration,
+					serviceDef,
+					dockerDefaults,
+					configDefaultValues,
 					MCMFolder: "~/.MCM",
 					hooks: serviceHooks
 				} );
@@ -635,7 +635,7 @@ describe( "Service Behavior", function() {
 			} );
 
 			it( "should create the necessary files", () => {
-				var rootDirectory = path.resolve( __dirname, "../../" );
+				const rootDirectory = path.resolve( __dirname, "../../" );
 				fs.copySync.should.have.been.calledWith( path.join( rootDirectory, "/files/test/somefile.json" ), "~/.MCM/containers/test/folder/somefile.json" );
 				fs.copySync.should.have.been.calledWith( path.join( rootDirectory, "/files/test/somefile2.json" ), "~/.MCM/containers/test/folder/somefile2.json" );
 				fs.copySync.should.have.been.calledWith( path.join( rootDirectory, "/files/test/somefile3.json" ), "~/.MCM/containers/test/folder/somefile3.json" );
