@@ -1,0 +1,37 @@
+{
+	"MC__HOST__APP_NAME": "<%= SERVICE_NAME %>",
+	"environment": "dev",
+	"rabbit": {
+		"host": "docker.host.local",
+		"pass": "guest",
+		"user": "guest",
+		"vhost": "%2f"
+	},
+	"statsd": {
+		"host": "docker.host.local"
+	},
+	"redis": {
+		"host": "docker.host.local",
+		"port": 6379
+	},
+	"auth": {
+		"redis": {
+			"prefix": "MCMWeb"
+		}
+	},
+	"sql": {
+		"pool": {
+			"max": 10,
+			"min": 1
+		}
+	},
+	"kanban": {
+		"host": "127.0.0.1"
+	},
+	"azure": {
+		"notificationHubs": {
+			"name": "",
+			"connectionString": ""
+		}
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"image": "mcm/core-auth-service",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 9900,
+			"host": 9900
+		}
+	},
+	"proxy": {
+		"path": {
+			"path_reg": [ "^(\\/io\\/scim|\\/auth-gateway)\\b" ],
+			"path_beg": [ "/socket.io/" ]
+		},
+		"port": "http",
+		"backend": [
+			"http-request set-path %[path,regsub(\\/node\\/api,/io)]",
+			"http-request set-path %[path,regsub(^\\/io\\/?$,/io/docs)] if METH_GET"
+		]
+	},
+	"config": {
+		"LK_CORE_SCIM_SERVICE_HOST": "public.host.local",
+		"LK_CORE_SCIM_SERVICE_PORT": 9800,
+		"LK_REDIS_HOST": "<%= REDIS_HOST %>",
+		"LK_SQL_HOST": "<%= SQL_HOST %>",
+		"LK_SQL_USER": "<%= SQL_USER %>",
+		"LK_SQL_PASSWORD": "<%= SQL_PASS %>",
+		"LK_SQL_DATABASE": "<%= SQL_DATABASE %>"
+	},
+	"run": {
+		"Hostname": "core-auth-service-host"
+	},
+	"weight": 1
+}

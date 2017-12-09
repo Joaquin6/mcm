@@ -1,0 +1,72 @@
+{
+	"image": "mcm/core-service-api",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 8008,
+			"host": 8008
+		}
+	},
+	"proxy": {
+		"path": {
+			"path_reg": [ "^(\\/node\\/api|\\/io)\\b" ],
+			"path_beg": [ "/socket.io/" ]
+		},
+		"port": "http",
+		"backend": [
+			"http-request set-path %[path,regsub(\\/node\\/api,/io)]",
+			"http-request set-path %[path,regsub(^\\/io\\/?$,/io/docs)] if METH_GET"
+		]
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "core-service-api",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"redis": {
+			"enabled": true,
+			"host": "<%= REDIS_HOST %>"
+		},
+		"session": {
+			"redis": {
+				"enabled": true,
+				"host": "<%= REDIS_HOST %>",
+				"prefix": "core.mcm.api"
+			}
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>"
+		},
+		"auth": {
+			"redis": {
+				"host": "<%= REDIS_HOST %>",
+				"prefix": "<%= AUTH_REDIS_PREFIX %>"
+			}
+		},
+		"services": {
+			"pushNotifications": {
+				"uri": "http://localhost.127.0.0.1:10000/api",
+				"jwt": {
+					"secret": "I'll huff and I'll puff and I'll blow your house down! - B.B. Wolf",
+					"issuer": "core-service-api",
+					"audience": "mobile-push-notification-service"
+				}
+			}
+		},
+		"dtsService": {
+			"url": "http://127.0.0.1:60022/DrillThroughStatistics/MultiGet"
+		},
+		"kanbanAppProxyTransport": "http"
+	},
+	"run": {
+		"Hostname": "core-service-api-host"
+	},
+	"weight": 100
+}

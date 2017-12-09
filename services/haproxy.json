@@ -1,0 +1,26 @@
+{
+	"image": "haproxy",
+	"tag": "alpine",
+	"ports": {
+		"http": {
+			"container": 80,
+			"host": 80
+		}
+	},
+	"files": [
+		{
+			"location": "/files/haproxy/haproxy.cfg",
+			"destination": "/haproxy/haproxy.cfg",
+			"preserve": false
+		}
+	],
+	"run": {
+		"Hostname": "haproxy-host",
+		"HostConfig": {
+			"Binds": [
+				"/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+			]
+		}
+	},
+	"weight": 1000
+}

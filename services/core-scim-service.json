@@ -1,0 +1,20 @@
+{
+	"image": "mcm/core-scim-service",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 9800,
+			"host": 9800
+		}
+	},
+	"config": {
+		"LK_SQL_HOST": "<%= SQL_HOST %>",
+		"LK_SQL_USER": "<%= SQL_USER %>",
+		"LK_SQL_PASSWORD": "<%= SQL_PASS %>",
+		"LK_SQL_DATABASE": "<%= SQL_DATABASE %>"
+	},
+	"run": {
+		"Hostname": "core-scim-service-host"
+	},
+	"weight": 100
+}

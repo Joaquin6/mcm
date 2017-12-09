@@ -1,0 +1,27 @@
+{
+	"image": "mcm/rabbitmq",
+	"ports": {
+		"main": {
+			"container": 5672,
+			"host": 5672
+		},
+		"web": {
+			"container": 15672,
+			"host": 15672
+		}
+	},
+	"folders": [
+		"/rabbit/data/log",
+		"/rabbit/data/mnesia"
+	],
+	"run": {
+		"Hostname": "rabbitmq-host",
+		"HostConfig": {
+			"Binds": [
+				"/rabbit/data/log:/data/log",
+				"/rabbit/data/mnesia:/data/mnesia"
+			]
+		}
+	},
+	"weight": 0
+}

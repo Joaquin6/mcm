@@ -1,0 +1,34 @@
+{
+	"image": "orientdb",
+	"ports": {
+	    "main": {
+	        "container": 2424,
+	        "host": 2424
+	    },
+	    "web": {
+	        "container": 2480,
+	        "host": 2480
+	    }
+	},
+	"folders": [
+		"/orientdb/databases",
+		"/orientdb/config"
+	],
+	"files": [
+		{
+			"location": "/files/orientdb/config/orientdb-server-config.xml",
+			"destination": "/orientdb/config/orientdb-server-config.xml"
+		}
+	],
+	"run": {
+		"Hostname": "orientdb-host",
+	    "HostConfig": {
+	        "Binds": [
+	            "/orientdb/databases:/orientdb/databases",
+	            "/orientdb/config:/orientdb/config"
+	        ]
+	    },
+	    "Env": [ "ORIENTDB_ROOT_PASSWORD=root" ]
+	},
+	"weight": 1
+}

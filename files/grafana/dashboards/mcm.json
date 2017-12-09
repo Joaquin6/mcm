@@ -1,0 +1,476 @@
+{
+	"id": null,
+	"title": "MCM",
+	"originalTitle": "MCM",
+	"tags": [],
+	"style": "dark",
+	"timezone": "browser",
+	"editable": true,
+	"hideControls": false,
+	"sharedCrosshair": false,
+	"rows": [
+		{
+			"collapse": false,
+			"editable": true,
+			"height": "250px",
+			"panels": [
+				{
+					"aliasColors": {},
+					"bars": false,
+					"datasource": null,
+					"editable": true,
+					"error": false,
+					"fill": 1,
+					"grid": {
+						"threshold1": null,
+						"threshold1Color": "rgba(216, 200, 27, 0.27)",
+						"threshold2": null,
+						"threshold2Color": "rgba(234, 112, 112, 0.22)"
+					},
+					"id": 3,
+					"legend": {
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"show": true,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 2,
+					"links": [],
+					"nullPointMode": "connected",
+					"percentage": false,
+					"pointradius": 5,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"span": 6,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"hide": false,
+							"refId": "A",
+							"target": "alias(stats.gauges.dev.core-service-api-host.mcm.api.physical-used, 'Physical Memory (Used)')",
+							"textEditor": true
+						},
+						{
+							"refId": "B",
+							"target": "alias(stats.gauges.dev.core-service-api-host.mcm.api.heap-total, 'Heap Total')",
+							"textEditor": true
+						},
+						{
+							"refId": "C",
+							"target": "alias(stats.gauges.dev.core-service-api-host.mcm.api.heap-used, 'Heap Used')",
+							"textEditor": true
+						}
+					],
+					"timeFrom": null,
+					"timeShift": null,
+					"title": "MCM API Memory",
+					"tooltip": {
+						"msResolution": false,
+						"shared": true,
+						"value_type": "cumulative"
+					},
+					"type": "graph",
+					"xaxis": {
+						"show": true
+					},
+					"yaxes": [
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					]
+				},
+				{
+					"aliasColors": {},
+					"bars": false,
+					"datasource": null,
+					"editable": true,
+					"error": false,
+					"fill": 1,
+					"grid": {
+						"threshold1": null,
+						"threshold1Color": "rgba(216, 200, 27, 0.27)",
+						"threshold2": null,
+						"threshold2Color": "rgba(234, 112, 112, 0.22)"
+					},
+					"id": 5,
+					"legend": {
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"show": true,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 2,
+					"links": [],
+					"nullPointMode": "connected",
+					"percentage": false,
+					"pointradius": 5,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"span": 6,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"hide": false,
+							"refId": "A",
+							"target": "alias(stats.gauges.dev.core-card-service-host.core-card-ser.physical-used, 'Physical Memory (Used)')",
+							"textEditor": true
+						},
+						{
+							"refId": "B",
+							"target": "alias(stats.gauges.dev.core-card-service-host.core-card-ser.heap-total, 'Heap Total')",
+							"textEditor": true
+						},
+						{
+							"refId": "C",
+							"target": "alias(stats.gauges.dev.core-card-service-host.core-card-ser.heap-used, 'Heap Used')",
+							"textEditor": true
+						}
+					],
+					"timeFrom": null,
+					"timeShift": null,
+					"title": "Core Card Service Memory",
+					"tooltip": {
+						"msResolution": false,
+						"shared": true,
+						"value_type": "cumulative"
+					},
+					"type": "graph",
+					"xaxis": {
+						"show": true
+					},
+					"yaxes": [
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					]
+				},
+				{
+					"aliasColors": {},
+					"bars": false,
+					"datasource": null,
+					"editable": true,
+					"error": false,
+					"fill": 1,
+					"grid": {
+						"threshold1": null,
+						"threshold1Color": "rgba(216, 200, 27, 0.27)",
+						"threshold2": null,
+						"threshold2Color": "rgba(234, 112, 112, 0.22)"
+					},
+					"id": 1,
+					"legend": {
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"show": true,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 2,
+					"links": [],
+					"nullPointMode": "connected",
+					"percentage": false,
+					"pointradius": 5,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"span": 6,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"hide": false,
+							"refId": "A",
+							"target": "alias(stats.gauges.dev.card-ui-host.card.ui.physical-used, 'Physical Memory (Used)')",
+							"textEditor": false
+						},
+						{
+							"refId": "B",
+							"target": "alias(stats.gauges.dev.card-ui-host.card.ui.heap-total, 'Heap Total')",
+							"textEditor": false
+						},
+						{
+							"refId": "C",
+							"target": "alias(stats.gauges.dev.card-ui-host.card.ui.heap-used, 'Heap Used')",
+							"textEditor": false
+						}
+					],
+					"timeFrom": null,
+					"timeShift": null,
+					"title": "Card.ui Memory",
+					"tooltip": {
+						"msResolution": false,
+						"shared": true,
+						"value_type": "cumulative"
+					},
+					"type": "graph",
+					"xaxis": {
+						"show": true
+					},
+					"yaxes": [
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					]
+				},
+				{
+					"aliasColors": {},
+					"bars": false,
+					"datasource": null,
+					"editable": true,
+					"error": false,
+					"fill": 1,
+					"grid": {
+						"threshold1": null,
+						"threshold1Color": "rgba(216, 200, 27, 0.27)",
+						"threshold2": null,
+						"threshold2Color": "rgba(234, 112, 112, 0.22)"
+					},
+					"id": 2,
+					"legend": {
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"show": true,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 2,
+					"links": [],
+					"nullPointMode": "connected",
+					"percentage": false,
+					"pointradius": 5,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"span": 6,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"hide": false,
+							"refId": "A",
+							"target": "alias(stats.gauges.dev.board-ui-host.board.ui.physical-used, 'Physical Memory (Used)')",
+							"textEditor": false
+						},
+						{
+							"refId": "B",
+							"target": "alias(stats.gauges.dev.board-ui-host.board.ui.heap-total, 'Heap Total')",
+							"textEditor": false
+						},
+						{
+							"refId": "C",
+							"target": "alias(stats.gauges.dev.board-ui-host.board.ui.heap-used, 'Heap Used')",
+							"textEditor": false
+						}
+					],
+					"timeFrom": null,
+					"timeShift": null,
+					"title": "Board.ui Memory",
+					"tooltip": {
+						"msResolution": false,
+						"shared": true,
+						"value_type": "cumulative"
+					},
+					"type": "graph",
+					"xaxis": {
+						"show": true
+					},
+					"yaxes": [
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					]
+				},
+				{
+					"aliasColors": {},
+					"bars": false,
+					"datasource": null,
+					"editable": true,
+					"error": false,
+					"fill": 1,
+					"grid": {
+						"threshold1": null,
+						"threshold1Color": "rgba(216, 200, 27, 0.27)",
+						"threshold2": null,
+						"threshold2Color": "rgba(234, 112, 112, 0.22)"
+					},
+					"id": 4,
+					"legend": {
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"show": true,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 2,
+					"links": [],
+					"nullPointMode": "connected",
+					"percentage": false,
+					"pointradius": 5,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"span": 6,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"hide": false,
+							"refId": "A",
+							"target": "alias(stats.gauges.dev.core-sql-event-processor-host.core-sql-event-.physical-used, 'Physical Memory (Used)')",
+							"textEditor": true
+						},
+						{
+							"refId": "B",
+							"target": "alias(stats.gauges.dev.core-sql-event-processor-host.core-sql-event-.heap-total, 'Heap Total')",
+							"textEditor": true
+						},
+						{
+							"refId": "C",
+							"target": "alias(stats.gauges.dev.core-sql-event-processor-host.core-sql-event-.heap-used, 'Heap Used')",
+							"textEditor": true
+						}
+					],
+					"timeFrom": null,
+					"timeShift": null,
+					"title": "Core SQL Event Processor Memory",
+					"tooltip": {
+						"msResolution": false,
+						"shared": true,
+						"value_type": "cumulative"
+					},
+					"type": "graph",
+					"xaxis": {
+						"show": true
+					},
+					"yaxes": [
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "bytes",
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					]
+				}
+			],
+			"title": "New row"
+		}
+	],
+	"time": {
+		"from": "now-15m",
+		"to": "now"
+	},
+	"timepicker": {
+		"collapse": false,
+		"enable": true,
+		"notice": false,
+		"now": true,
+		"refresh_intervals": [
+			"5s",
+			"10s",
+			"30s",
+			"1m",
+			"5m",
+			"15m",
+			"30m",
+			"1h",
+			"2h",
+			"1d"
+		],
+		"status": "Stable",
+		"time_options": [
+			"5m",
+			"15m",
+			"1h",
+			"6h",
+			"12h",
+			"24h",
+			"2d",
+			"7d",
+			"30d"
+		],
+		"type": "timepicker"
+	},
+	"templating": {
+		"list": []
+	},
+	"annotations": {
+		"list": []
+	},
+	"refresh": "5s",
+	"schemaVersion": 12,
+	"version": 2,
+	"links": []
+}

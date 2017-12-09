@@ -1,0 +1,46 @@
+{
+	"image": "mcm/web-home-slice",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 9002,
+			"host": 9002
+		}
+	},
+	"proxy": {
+		"path": "/node/slice/home",
+		"port": "http"
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "web-home-slice",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"redis": {
+			"enabled": true,
+			"host": "<%= REDIS_HOST %>"
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>"
+		},
+		"auth": {
+			"redis": {
+				"enabled": true,
+				"host": "<%= REDIS_HOST %>",
+				"db": 15,
+				"prefix": "<%= AUTH_REDIS_PREFIX %>_"
+			}
+		}
+	},
+	"run": {
+		"Hostname": "web-home-slice-host"
+	},
+	"weight": 100
+}

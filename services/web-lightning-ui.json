@@ -1,0 +1,53 @@
+{
+	"image": "mcm/web-lightning-ui",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 8989,
+			"host": 8989
+		}
+	},
+	"proxy": {
+		"acl": [ "web_lightning_ui" ],
+		"port": "http",
+		"backend": [
+			"http-request set-header X-Original-URL %[url]",
+			"http-request set-path %[path,regsub(^/lightning/,/,i)]"
+		]
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "web-lightning-ui",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"redis": {
+			"enabled": true,
+			"host": "<%= REDIS_HOST %>"
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>"
+		},
+		"auth": {
+			"redis": {
+				"enabled": true,
+				"host": "<%= REDIS_HOST %>",
+				"db": 15,
+				"prefix": "<%= AUTH_REDIS_PREFIX %>_"
+			}
+		},
+		"proxy": {
+			"api": "docker.host.local"
+		}
+	},
+	"run": {
+		"Hostname": "web-lightning-ui-host"
+	},
+	"weight": 100
+}

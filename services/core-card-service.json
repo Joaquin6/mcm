@@ -1,0 +1,30 @@
+{
+	"image": "mcm/core-card-service",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 8600,
+			"host": 8600
+		}
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "core-card-service",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>"
+		}
+	},
+	"run": {
+		"Hostname": "core-card-service-host"
+	},
+	"weight": 100
+}

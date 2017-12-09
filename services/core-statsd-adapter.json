@@ -1,0 +1,20 @@
+{
+	"image": "mcm/core-statsd-adapter",
+	"config": {
+		"MC__HOST__APP_NAME": "core-service-api",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"statsd": {
+			"host": "<%= STATSD_HOST %>"
+		}
+	},
+	"run": {
+		"Hostname": "core-statsd-adapter-host"
+	},
+	"weight": 10
+}

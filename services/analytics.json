@@ -1,0 +1,55 @@
+{
+	"image": "mcm/analytics",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 8088,
+			"host": 8088
+		}
+	},
+	"proxy": {
+		"path": "/analytics",
+		"port": "http"
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "mcm.analytics",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"auth": {
+			"enabled": true,
+			"redis": {
+				"host": "<%= REDIS_HOST %>"
+			},
+			"user": {
+				"endpoint": {
+					"protocol": "http"
+				}
+			}
+		},
+		"redis": {
+			"host": "<%= REDIS_HOST %>"
+		},
+		"session": {
+			"redis": {
+				"enabled": true,
+				"host": "<%= REDIS_HOST %>",
+				"prefix": "mcm.analytics"
+			}
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>"
+		}
+	},
+	"run": {
+		"Hostname": "mcm-analytics-host"
+	},
+	"weight": 100
+}

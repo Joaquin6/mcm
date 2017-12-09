@@ -1,0 +1,34 @@
+{
+	"image": "mcm/reporting-api",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 8800,
+			"host": 8800
+		}
+	},
+	"proxy": {
+		"path": "/io/reporting/",
+		"port": "http",
+		"backend": ["http-request set-path %[path,regsub(^\\/io\\/reporting\\/,/,i)]"]
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "reporting-api",
+		"analytics": {
+			"domain": "<%= ANALYTICS_DOMAIN %>",
+			"server": "<%= ANALYTICS_SERVER %>",
+			"user": "<%= ANALYTICS_USER %>",
+			"password": "<%= ANALYTICS_PASSWORD %>",
+			"database": "<%= ANALYTICS_DATABASE %>",
+			"requestTimeout": 30000,
+			"pool": {
+				"max": 10,
+				"min": 1
+			}
+		}
+	},
+	"run": {
+		"Hostname": "reporting-api-host"
+	},
+	"weight": 90
+}

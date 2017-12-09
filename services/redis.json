@@ -1,0 +1,21 @@
+{
+	"image": "mcm/redis",
+	"tag": "3.2.0-alpine-1",
+	"ports": {
+		"main": {
+			"container": 6379,
+			"host": 6379
+		}
+	},
+	"folders": [
+		"/redis"
+	],
+	"run": {
+		"Hostname": "redis-host",
+		"HostConfig": {
+			"Binds": ["/redis:/data"],
+			"Privileged": true
+		}
+	},
+	"weight": 1
+}

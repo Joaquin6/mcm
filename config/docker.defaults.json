@@ -1,0 +1,22 @@
+{
+    "Tty": true,
+    "AttachStdin": false,
+    "AttachStdout": false,
+    "AttachStderr": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [],
+    "ExposedPorts": {},
+    "HostConfig": {
+        "RestartPolicy": {
+            "Name": "on-failure"
+        },
+        "ExtraHosts": [],
+        "PortBindings": {},
+        "Binds": []
+    },
+    "Hostname": "",
+    "User": "",
+    "Volumes": {},
+    "VolumesFrom": []
+}

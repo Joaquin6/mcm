@@ -1,0 +1,56 @@
+{
+	"image": "mcm/card.ui",
+	"ports": {
+		"http": {
+			"env": "HOST_PORT",
+			"container": 8018,
+			"host": 8018
+		}
+	},
+	"proxy": {
+		"path": "/node/ui/card",
+		"port": "http"
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "card.ui",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+		},
+		"auth": {
+			"redis": {
+				"enabled": true,
+				"host": "<%= REDIS_HOST %>"
+			},
+			"user": {
+				"endpoint": {
+					"protocol": "http"
+				}
+			}
+		},
+		"redis": {
+			"enabled": true,
+			"host": "<%= REDIS_HOST %>"
+		},
+		"session": {
+			"redis": {
+				"enabled": true,
+				"host": "<%= REDIS_HOST %>",
+				"prefix": "card.ui"
+			}
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>"
+		}
+	},
+	"run": {
+		"Hostname": "card-ui-host"
+	},
+	"weight": 100
+}

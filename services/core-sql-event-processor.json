@@ -1,0 +1,46 @@
+{
+	"image": "mcm/core-sql-event-processor",
+	"ports": {
+	    "http": {
+	        "env": "HOST_PORT",
+	        "container": 8038,
+	        "host": 8038
+	    }
+	},
+	"config": {
+		"MC__HOST__APP_NAME": "core-sql-event-processor",
+		"rabbit": {
+			"host": "<%= RABBIT_HOST %>",
+			"server": "<%= RABBIT_HOST %>",
+			"pass": "<%= RABBIT_PASS %>",
+			"user": "<%= RABBIT_USER %>",
+			"vhost": "<%= RABBIT_VHOST %>"
+			},
+		"redis": {
+			"enabled": true,
+			"host": "<%= REDIS_HOST %>"
+		},
+		"sql": {
+			"host": "<%= SQL_HOST %>",
+			"user": "<%= SQL_USER %>",
+			"pass": "<%= SQL_PASS %>",
+			"database": "<%= SQL_DATABASE %>",
+			"pool": {
+				"max": "<%= SQL_POOL_MAX %>",
+				"min": "<%= SQL_POOL_MIN %>"
+			}
+		},
+	    "session": {
+	        "redis": {
+	            "enabled": false
+	        }
+	    },
+	    "redis": {
+	        "enabled": false
+	    }
+	},
+	"run": {
+		"Hostname": "core-sql-event-processor-host"
+	},
+	"weight": 100
+}

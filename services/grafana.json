@@ -1,0 +1,41 @@
+{
+	"image": "mcm/grafana",
+	"ports": {
+	    "http": {
+	        "container": 80,
+	        "host": 9000
+	    },
+	    "statsd": {
+	        "container": 8125,
+	        "host": 8125,
+	        "protocol": "udp"
+	    },
+	    "statsd-admin": {
+	        "container": 8126,
+	        "host": 8126
+	    },
+	    "graphite": {
+	        "container": 81,
+	        "host": 9001
+	    }
+	},
+	"weight": 5,
+	"folders": [
+		"/grafana/data/whisper",
+		"/grafana/data/grafana",
+		"/grafana/log/graphite",
+		"/grafana/dashboards",
+		"/grafana/log/graphite/webapp"
+	],
+	"run": {
+		"Hostname": "grafana-host",
+	    "HostConfig": {
+	        "Binds": [
+	            "/grafana/data/whisper:/opt/graphite/storage/whisper",
+        		"/grafana/data/grafana:/opt/grafana/data",
+        		"/grafana/log/graphite:/opt/graphite/storage/log",
+        		"/grafana/dashboards:/src/dashboards"
+	        ]
+	    }
+	}
+}

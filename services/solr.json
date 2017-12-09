@@ -1,0 +1,217 @@
+{
+	"image": "solr",
+	"ports": {
+	    "main": {
+	        "container": 8983,
+	        "host": 8983
+	    }
+	},
+	"weight": 1,
+	"folders": [
+		"/solr/config",
+		"/solr/config/lang",
+		"/solr/data"
+	],
+	"files": [
+		{
+			"location": "/files/solr/config/currency.xml",
+			"destination": "/solr/config/currency.xml"
+		},
+		{
+			"location": "/files/solr/config/elevate.xml",
+			"destination": "/solr/config/elevate.xml"
+		},
+		{
+			"location": "/files/solr/config/managed-schema",
+			"destination": "/solr/config/managed-schema"
+		},
+		{
+			"location": "/files/solr/config/params.json",
+			"destination": "/solr/config/params.json"
+		},
+		{
+			"location": "/files/solr/config/protwords.txt",
+			"destination": "/solr/config/protwords.txt"
+		},
+		{
+			"location": "/files/solr/config/solrconfig.xml",
+			"destination": "/solr/config/solrconfig.xml"
+		},
+		{
+			"location": "/files/solr/config/stopwords.txt",
+			"destination": "/solr/config/stopwords.txt"
+		},
+		{
+			"location": "/files/solr/config/synonyms.txt",
+			"destination": "/solr/config/synonyms.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/contractions_ca.txt",
+			"destination": "/solr/config/lang/contractions_ca.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/contractions_fr.txt",
+			"destination": "/solr/config/lang/contractions_fr.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/contractions_ga.txt",
+			"destination": "/solr/config/lang/contractions_ga.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/contractions_it.txt",
+			"destination": "/solr/config/lang/contractions_it.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/hyphenations_ga.txt",
+			"destination": "/solr/config/lang/hyphenations_ga.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stemdict_nl.txt",
+			"destination": "/solr/config/lang/stemdict_nl.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stoptags_ja.txt",
+			"destination": "/solr/config/lang/stoptags_ja.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_ar.txt",
+			"destination": "/solr/config/lang/stopwords_ar.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_bg.txt",
+			"destination": "/solr/config/lang/stopwords_bg.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_ca.txt",
+			"destination": "/solr/config/lang/stopwords_ca.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_cz.txt",
+			"destination": "/solr/config/lang/stopwords_cz.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_da.txt",
+			"destination": "/solr/config/lang/stopwords_da.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_de.txt",
+			"destination": "/solr/config/lang/stopwords_de.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_el.txt",
+			"destination": "/solr/config/lang/stopwords_el.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_en.txt",
+			"destination": "/solr/config/lang/stopwords_en.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_es.txt",
+			"destination": "/solr/config/lang/stopwords_es.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_eu.txt",
+			"destination": "/solr/config/lang/stopwords_eu.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_fa.txt",
+			"destination": "/solr/config/lang/stopwords_fa.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_fi.txt",
+			"destination": "/solr/config/lang/stopwords_fi.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_fr.txt",
+			"destination": "/solr/config/lang/stopwords_fr.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_ga.txt",
+			"destination": "/solr/config/lang/stopwords_ga.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_gl.txt",
+			"destination": "/solr/config/lang/stopwords_gl.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_hi.txt",
+			"destination": "/solr/config/lang/stopwords_hi.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_hu.txt",
+			"destination": "/solr/config/lang/stopwords_hu.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_hy.txt",
+			"destination": "/solr/config/lang/stopwords_hy.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_id.txt",
+			"destination": "/solr/config/lang/stopwords_id.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_it.txt",
+			"destination": "/solr/config/lang/stopwords_it.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_ja.txt",
+			"destination": "/solr/config/lang/stopwords_ja.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_lv.txt",
+			"destination": "/solr/config/lang/stopwords_lv.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_nl.txt",
+			"destination": "/solr/config/lang/stopwords_nl.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_no.txt",
+			"destination": "/solr/config/lang/stopwords_no.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_pt.txt",
+			"destination": "/solr/config/lang/stopwords_pt.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_ro.txt",
+			"destination": "/solr/config/lang/stopwords_ro.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_ru.txt",
+			"destination": "/solr/config/lang/stopwords_ru.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_sv.txt",
+			"destination": "/solr/config/lang/stopwords_sv.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_th.txt",
+			"destination": "/solr/config/lang/stopwords_th.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/stopwords_tr.txt",
+			"destination": "/solr/config/lang/stopwords_tr.txt"
+		},
+		{
+			"location": "/files/solr/config/lang/userdict_ja.txt",
+			"destination": "/solr/config/lang/userdict_ja.txt"
+		}
+	],
+	"run": {
+		"Hostname": "solr-host",
+	    "HostConfig": {
+	        "Binds": [
+	            "/solr/config:/config",
+	            "/solr/data:/data"
+	        ]
+	    },
+	    "Cmd" : [
+	    	"solr-create",
+            "-c",
+            "kanban",
+            "-d",
+            "/config"
+        ]
+	}
+}
