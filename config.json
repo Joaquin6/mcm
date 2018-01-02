@@ -1,5 +1,18 @@
 {
-	"services": {},
+	"services": {
+		"github": {
+			"type": "basic",
+			"username": "Joaquin6",
+			"email": "joaquinbriceno1@gmail.com",
+			"password": "",
+			"host": "api.github.com",
+			"pathPrefix": "/api/v3",
+			"protocol": "https",
+			"port": 9898,
+			"rejectUnauthorized": false,
+			"family": 6
+		}
+	},
 	"config": {
 		"sql": {
 			"host": "124.0.0.1",
