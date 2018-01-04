@@ -7,8 +7,8 @@ var flatten = require( "flat" );
 var hostile = require( "hostile" );
 var lift = require( "when/node" ).lift;
 
-var dockerSetup = require( "./dockerSetup" );
-var githubSetup = require( "./githubSetup" );
+var dockerSetup = require( "../dockerSetup" );
+var githubSetup = require( "../githubSetup" );
 
 var getHosts = lift( hostile.get );
 

@@ -1,6 +1,6 @@
 var _ = require( "lodash" );
 var when = require( "when" );
-var log = require( "./log" );
+var log = require( "../log" );
 var logUpdate = require( "log-update" );
 var NOT_MODIFIED = 304;
 var NOT_FOUND = 404;
@@ -16,43 +16,17 @@ module.exports = function( github, config ) {
 
 		getGist: function( gist ) {
 			return when.promise( function( resolve, reject ) {
-				github.listGists( function( err, images ) {
-					if ( err ) {
-						return reject( err );
-					}
-
-					var instance = _.find( gists, function( i ) {
-						return _.includes( i.gist );
-					} );
-
-					return resolve( instance );
+				var gists = api.getAllGists();
+				var foundGist = _.find( gists, function( i ) {
+					return _.includes( i.gist );
 				} );
+
+				return resolve( foundGists );
 			} );
 		},
 
-		getAllGists: function( baseImage ) {
-			return when.promise( function( resolve, reject ) {
-				github.listGists( { all: 1 }, function( err, containers ) {
-					if ( err ) {
-						return reject( err );
-					}
-
-					if ( !containers ) {
-						return resolve( [] );
-					}
-
-					var filtered = _.filter( containers, function( c ) {
-						var split = c.Image.split( ":" );
-						return split[ 0 ] === baseImage;
-					} );
-
-					var instances = _.map( filtered, function( c ) {
-						return github.getGist( c.Id );
-					} );
-
-					return resolve( instances );
-				} );
-			} );
+		getAllGists: function() {
+			return github.gists.getAll();
 		},
 
 		_deleteGist: function( container, name ) {

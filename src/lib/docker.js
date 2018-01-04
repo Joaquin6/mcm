@@ -1,6 +1,6 @@
 var _ = require( "lodash" );
 var when = require( "when" );
-var log = require( "./log" );
+var log = require( "../log" );
 var logUpdate = require( "log-update" );
 var NOT_MODIFIED = 304;
 var NOT_FOUND = 404;
